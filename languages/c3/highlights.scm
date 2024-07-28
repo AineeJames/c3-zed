@@ -12,6 +12,7 @@
   "def"
   "fault"
   "defer"
+  "in"
 ] @keyword
 
 "import" @include
@@ -27,6 +28,7 @@
 [
   "while"
   "for"
+  "foreach"
 ] @repeat
 
 [
