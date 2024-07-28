@@ -1,0 +1,7 @@
+id = "c3-zed"
+name = "C3 Lang"
+version = "0.0.1"
+schema_version = 1
+authors = ["Aiden Olsen <oslenaiden33@gmail.com>"]
+description = "This extension bring basic c3 language highlighting support to zed."
+repository = "https://github.com/your-name/my-zed-extension"
