@@ -1,3 +1,3 @@
 # C3 Zed Extension
 
-Tree Sitter: [cbuttner/tree-sitter-c3](https://github.com/cbuttner/tree-sitter-c3)
+Tree Sitter: [c3lang/tree-sitter-c3](https://github.com/c3lang/tree-sitter-c3)
