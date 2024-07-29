@@ -7,5 +7,5 @@ description = "This extension bring basic c3 language support to zed. NOTE: This
 repository = "https://github.com/AineeJames/c3-zed"
 
 [grammars.c3]
-repository = "https://github.com/cbuttner/tree-sitter-c3"
-commit = "f508657f40fea50647ea47f223d8ab0cb47b73f5"
+repository = "https://github.com/c3lang/tree-sitter-c3"
+commit = "dd571e8a8ed4da58f5189e54f6dd0accf1daf388"
