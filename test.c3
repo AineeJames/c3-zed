@@ -6,7 +6,5 @@ fn int add(int a, int b) {
 }
 
 fn void main() {
-    io::printn("Hello, World!");
-    std::os::exit(0);
-    std::io::printn("Hello, wold")
+    std::io::printn("Hello, world!");
 }
