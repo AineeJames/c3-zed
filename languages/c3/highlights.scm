@@ -318,6 +318,6 @@
 [
   (line_comment)
   (block_comment)
-] @comment @spell
+] @comment
 
-(doc_comment) @comment.documentation @spell
+(doc_comment) @comment.documentation

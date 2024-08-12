@@ -1,6 +1,7 @@
 module main;
 import std::io;
 
+// add two numbers
 fn int add(int a, int b) {
     return a + b;
 }

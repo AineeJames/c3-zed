@@ -2,7 +2,7 @@ id = "c3"
 name = "C3"
 version = "0.0.2"
 schema_version = 1
-authors = ["Aiden Olsen <oslenaiden33@gmail.com>"]
+authors = ["Aiden Olsen <olsenaiden33@gmail.com>"]
 description = "This extension bring basic c3 language support to zed. NOTE: This extenstion supports up to c3 version 0.6.1."
 repository = "https://github.com/AineeJames/c3-zed"
 
