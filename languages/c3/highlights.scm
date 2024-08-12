@@ -1,4 +1,34 @@
-;; Keyword
+;; NOTE In this file later patterns are assumed to have priority!
+
+;; Punctuation
+["(" ")" "[" "]" "{" "}" "(<" ">)" "[<" ">]" "{|" "|}"] @punctuation.bracket
+[";" "," ":" "::"] @punctuation.delimiter
+
+;; Constant
+(const_ident) @constant
+["true" "false"] @boolean
+["null"] @constant.builtin
+
+;; Variable
+[(ident) (ct_ident)] @variable
+;; 1) Member
+(field_expr field: (access_ident (ident) @variable.member))
+(struct_member_declaration (ident) @variable.member)
+(struct_member_declaration (identifier_list (ident) @variable.member))
+(bitstruct_member_declaration (ident) @variable.member)
+(initializer_list (arg (param_path (param_path_element (ident) @variable.member))))
+;; 2) Parameter
+(parameter name: (_) @variable.parameter)
+(call_invocation (arg (param_path (param_path_element [(ident) (ct_ident)] @variable.parameter))))
+(enum_param_declaration (ident) @variable.parameter)
+;; 3) Declaration
+(global_declaration (ident) @variable.declaration)
+(local_decl_after_type name: [(ident) (ct_ident)] @variable.declaration)
+(var_decl name: [(ident) (ct_ident)] @variable.declaration)
+(try_unwrap (ident) @variable.declaration)
+(catch_unwrap (ident) @variable.declaration)
+
+;; Keyword (from `c3c --list-keywords`)
 [
   "assert"
   "asm"
@@ -98,17 +128,7 @@
   "tlocal"
 ] @keyword.modifier
 
-;; Punctuation
-[
-  "("
-  ")"
-  "["
-  "]"
-  "{"
-  "}"
-] @punctuation.bracket
-
-;; Operator
+;; Operator (from `c3c --list-operators`)
 [
   "&"
   "!"
@@ -172,14 +192,8 @@
   ">>="
 ] @operator
 
-[
-  ";"
-  ","
-  ":"
-  "::"
-] @punctuation.delimiter
-
 (range_expr ":" @operator)
+(foreach_cond ":" @operator)
 
 (ternary_expr
   [
@@ -209,7 +223,7 @@
 ;; Builtin (constants)
 ((builtin) @constant.builtin (#match? @constant.builtin "_*[A-Z][_A-Z0-9]*"))
 
-;; Type Property
+;; Type Property (from `c3c --list-type-properties`)
 (type_access_expr (access_ident [(ident) "typeid"] @variable.builtin
                                 (#any-of? @variable.builtin
                                           "alignof"
@@ -235,12 +249,8 @@
                                           "returns"
                                           "sizeof"
                                           "values"
+                                          ;; Extra token
                                           "typeid")))
-
-;; Constant
-((const_ident) @constant (#set! priority 1))
-["true" "false"] @boolean
-["null"] @constant.builtin
 
 ;; Label
 [
@@ -257,6 +267,7 @@
 (attribute name: (_) @attribute)
 (define_attribute name: (_) @attribute)
 (call_inline_attributes (at_ident) @attribute)
+(asm_block_stmt (at_ident) @attribute)
 
 ;; Type
 [
@@ -272,25 +283,12 @@
 (macro_header name: (_) @function)
 (macro_header method_type: (_) name: (_) @function.method)
 
-;; Variable
-((ident) @variable (#set! priority 1))
-((field_expr field: (access_ident (ident) @variable.member)) (#set! priority 2))
-(struct_member_declaration (identifier_list (ident) @variable.member))
-(bitstruct_member_declaration (ident) @variable.member)
-;; (global_declaration (ident) @variable)
-;; (multi_declaration (ident) @variable)
-;; (local_decl_after_type name: (_) @variable)
-;; (try_unwrap (ident) @variable)
-(parameter [(ident) (ct_ident) (hash_ident)] @variable.parameter)
-(call_invocation (arg (param_path) @variable.parameter))
-(initializer_list (arg (param_path) @variable.member))
-
 ;; Function Call
 (call_expr function: [(ident) (at_ident)] @function.call)
 (call_expr function: [(builtin)] @function.builtin.call)
 (call_expr function: (module_ident_expr ident: (_) @function.call))
 (call_expr function: (trailing_generic_expr argument: (module_ident_expr ident: (_) @function.call)))
-(call_expr function: (field_expr field: (_) @function.method.call)) ; Ambiguous, could be calling a method or function pointer
+(call_expr function: (field_expr field: (access_ident [(ident) (at_ident)] @function.method.call))) ; NOTE Ambiguous, could be calling a method or function pointer
 ;; Method on type
 (call_expr function: (type_access_expr field: (access_ident [(ident) (at_ident)] @function.method.call)))
 
@@ -311,6 +309,10 @@
 ;; (unary_expr operator: ["--" "++"] argument: (module_ident_expr (ident) @variable.member))
 ;; (unary_expr operator: ["--" "++"] argument: (field_expr field: (access_ident (ident)) @variable.member))
 ;; (unary_expr operator: ["--" "++"] argument: (subscript_expr ["[" "]"] @variable.member))
+
+;; Asm
+(asm_instr [(ident) "int"] @function.builtin)
+(asm_expr [(ct_ident) (ct_const_ident)] @variable.builtin)
 
 ;; Comment
 [

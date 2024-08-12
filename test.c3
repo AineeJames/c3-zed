@@ -6,5 +6,5 @@ fn int add(int a, int b) {
 }
 
 fn void main() {
-    std::io::printn("Hello, world!");
+    std::io::printfn("2 + 3 = %d", add(2, 3));
 }
