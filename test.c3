@@ -1,11 +1,31 @@
 module main;
 import std::io;
 
-// add two numbers
-fn int add(int a, int b) {
-    return a + b;
+interface Object
+{
+    fn String as_str();
 }
 
-fn void main() {
-    std::io::printfn("2 + 3 = %d", add(2, 3));
+struct Person (Object)
+{
+    String first;
+    String last;
+    int age;
+}
+
+fn String Person.as_str(Person* self) @dynamic
+{
+    DString str;
+    str.appendf("%s %s (age %d)", self.first, self.last, self.age);
+    return str.copy_str();
+}
+
+fn void main()
+{
+    Person p = {
+        .first = "John",
+        .last = "Doe",
+        .age = 52,
+    };
+    io::printn(p.as_str());
 }

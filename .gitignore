@@ -2,3 +2,5 @@ grammars/
 /target
 extension.wasm
 Cargo.lock
+main
+main.dSYM/

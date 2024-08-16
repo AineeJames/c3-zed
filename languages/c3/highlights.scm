@@ -99,7 +99,7 @@
   "interface"
   "struct"
   "union"
-] @keyword.type
+] @keyword
 
 [
   "case"
