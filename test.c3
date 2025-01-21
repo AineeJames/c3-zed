@@ -20,6 +20,21 @@ fn String Person.as_str(Person* self) @dynamic
     return str.copy_str();
 }
 
+<*
+Factorial.
+@pure
+@param i
+@require i >= 0
+@ensure return >= 1
+*>
+fn int fact(int i = 0) {
+  if (i == 0) {
+    return 1;
+  } else {
+    return i * fact(i: i - 1);
+  }
+}
+
 fn void main()
 {
     Person p = {
