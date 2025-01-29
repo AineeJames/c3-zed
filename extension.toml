@@ -12,4 +12,4 @@ language = "C3"
 
 [grammars.c3]
 repository = "https://github.com/c3lang/tree-sitter-c3"
-commit = "790a0326833cd647e00d8dec01268aa1ec2e3bdb"
+commit = "10a78fbf8d3095369d32bc99840487396d899899"
