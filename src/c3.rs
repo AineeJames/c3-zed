@@ -12,8 +12,8 @@ impl zed::Extension for C3Extension {
         _language_server_id: &zed::LanguageServerId,
         worktree: &zed::Worktree,
     ) -> Result<zed::Command> {
-        let c3lsp_cmd = worktree.which("c3-lsp");
-        let path = c3lsp_cmd.ok_or_else(|| "c3-lsp must be in your path".to_string())?;
+        let c3lsp_cmd = worktree.which("c3lsp");
+        let path = c3lsp_cmd.ok_or_else(|| "c3lsp must be in your path".to_string())?;
 
         Ok(zed::Command {
             command: path,
