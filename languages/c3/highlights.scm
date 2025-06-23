@@ -1,7 +1,7 @@
 ;; NOTE In this file later patterns are assumed to have priority!
 
 ;; Punctuation
-["(" ")" "[" "]" "{" "}" "(<" ">)" "[<" ">]" "{|" "|}"] @punctuation.bracket
+["(" ")" "[" "]" "{" "}"] @punctuation.bracket
 [";" "," ":" "::"] @punctuation.delimiter
 
 ;; Constant
@@ -30,6 +30,7 @@
 
 ;; Keyword (from `c3c --list-keywords`)
 [
+  "alias"
   "assert"
   "asm"
   "catch"
@@ -40,12 +41,9 @@
 
 [
   "$alignof"
-  "$and"
-  "$append"
   "$assert"
   "$assignable"
   "$case"
-  "$concat"
   "$default"
   "$defined"
   "$echo"
@@ -68,7 +66,6 @@
   "$is_const"
   "$nameof"
   "$offsetof"
-  "$or"
   "$qnameof"
   "$sizeof"
   "$stringify"
@@ -78,7 +75,6 @@
   "$vacount"
   "$vatype"
   "$vaconst"
-  "$varef"
   "$vaarg"
   "$vaexpr"
   "$vasplat"
@@ -92,10 +88,9 @@
 
 [
   "bitstruct"
-  "def"
-  "distinct"
   "enum"
   "fault"
+  "inline"
   "interface"
   "struct"
   "union"
@@ -265,7 +260,6 @@
 
 ;; Attribute
 (attribute name: (_) @attribute)
-(define_attribute name: (_) @attribute)
 (call_inline_attributes (at_ident) @attribute)
 (asm_block_stmt (at_ident) @attribute)
 
