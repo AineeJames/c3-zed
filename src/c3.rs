@@ -49,7 +49,7 @@ impl zed::Extension for C3Extension {
             | CompletionKind::Method
             | CompletionKind::Function) => {
                 // Use a 'def' to syntax highlight a type in the RHS
-                let mut ty_prelude = "def Mt = ";
+                let mut ty_prelude = "alias Mt = ";
                 let ty = detail;
                 let mut ty_post = ";\nint a = ";
                 let mut call = "";
