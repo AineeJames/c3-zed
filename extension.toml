@@ -12,4 +12,4 @@ language = "C3"
 
 [grammars.c3]
 repository = "https://github.com/c3lang/tree-sitter-c3"
-rev = "0e4f7a008af55f3254e50b6b9e2e8936f55f7036"
+rev = "e4d3418873ff9f36c71474b5b08c204289f46fb0"

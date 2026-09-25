@@ -75,6 +75,7 @@
   "alias"
   "asm"
   "attrdef"
+  "attrmacro"
   "catch"
   "defer"
   "try"
@@ -98,6 +99,7 @@
   "$exec"
   "$expand"
   "$feature"
+  "$feat"
   "$for"
   "$foreach"
   "$if"
@@ -105,8 +107,8 @@
   "$reflect"
   "$stringify"
   "$switch"
-  "$typefrom"
-  "$typeof"
+  "$Typefrom"
+  "$Typeof"
   "$vaarg"
 ] @keyword.directive
 
@@ -126,12 +128,17 @@
 [
   "bitstruct"
   "enum"
+  "excuse"
   "faultdef"
+  "faultset"
   "interface"
   "struct"
   "typedef"
+  "distinct"
   "union"
   "constdef"
+  "constset"
+  "cenum"
 ] @keyword.type
 
 [
